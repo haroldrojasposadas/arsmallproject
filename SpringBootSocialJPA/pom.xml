@@ -8,9 +8,9 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.hrojas</groupId>
-	<artifactId>SpringBootSocialJPA</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.ar</groupId>
+	<artifactId>spring-boot-social-jpa</artifactId>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>SpringBootSocialJPA</name>
 	<description>Demo project for Spring Boot</description>
