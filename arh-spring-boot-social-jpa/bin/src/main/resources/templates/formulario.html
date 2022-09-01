@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+   <head>
+      <title>User Info</title>
+       <!-- Bootstrap core CSS     -->
+    <link rel="stylesheet" th:href="@{/dist/css/bootstrap.min.css}"/>
+    <!--  Bootstrap core JS    -->
+<script th:src="@{/dist/js/bootstrap.min.js}"></script>
+   </head>
+   <body>
+      <!-- Include _menu.html -->
+      <th:block th:include="/_menu"></th:block>
+       
+       
+      <h2>User Info Page</h2>
+      <h3>Welcome : <span th:utext="${#request.userPrincipal.name}"></span></h3>
+      <b>This is protected page!</b>  
+      
+        <div sec:authorize="hasRole('ROLE_USER')">Texto visible para usuarios.</div>
+        <input sec:authorize="hasRole('ROLE_USER')" type="text" value="USER">
+        <div sec:authorize="hasRole('ROLE_ADMIN')">Texto visible para administradores.</div>
+        <input sec:authorize="hasRole('ROLE_ADMIN')" type="text" value="ADMIN">
+        <div sec:authorize="isAuthenticated()">
+            Text visible only to authenticated users.
+        </div>
+
+      <br/><br/>
+      
+<h2>Opciones de Usuario por Perfil</h2>      
+<div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+     
+    <!-- Formulario la bestia -->
+   <div class="container">
+      <div class="row">
+    <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')" class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+    <fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+      <div class="col-sm-10">
+        <div sec:authorize="hasRole('ROLE_ADMIN')  or hasRole('ROLE_USER')" class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <label class="form-check-label" for="gridRadios1">
+            First radio
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <label class="form-check-label" for="gridRadios2">
+            Second radio
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+          <label class="form-check-label" for="gridRadios3">
+            Third disabled radio
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+       </div> 
+    </div>
+   </body>
+   
+</html>
