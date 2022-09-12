@@ -16,12 +16,14 @@ import com.arh.app.model.request.PassengerUpdateRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-//@RequestMapping(value = "/api/v1")
-@RequiredArgsConstructor
 public class ApiController {
 
   private final InstantWebToolsAPIClient apiClient;
-
+  
+  public ApiController(InstantWebToolsAPIClient apiClient){
+	  this.apiClient = apiClient;
+	}
+  
   @GetMapping(value = "/airline/{airlineId}")
   public ResponseEntity readAirlineData (@PathVariable String airlineId) {
       
